@@ -1,0 +1,570 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "sku": "P-001",
+      "title": "Ноутбук Dell XPS 15",
+      "price": 120000,
+      "stock": 5,
+      "updatedAt": "2025-01-10T10:00:00Z"
+    },
+    {
+      "id": "2",
+      "sku": "P-002",
+      "title": "Мышь Logitech MX Master 3",
+      "price": 5000,
+      "stock": 20,
+      "updatedAt": "2025-01-12T12:00:00Z"
+    },
+    {
+      "id": "3",
+      "sku": "P-003",
+      "title": "Клавиатура Keychron K8",
+      "price": 8500,
+      "stock": 15,
+      "updatedAt": "2025-01-11T14:30:00Z"
+    },
+    {
+      "id": "4",
+      "sku": "P-004",
+      "title": "Монитор LG UltraWide 34\"",
+      "price": 45000,
+      "stock": 8,
+      "updatedAt": "2025-01-09T09:00:00Z"
+    },
+    {
+      "id": "5",
+      "sku": "P-005",
+      "title": "Веб-камера Logitech C920",
+      "price": 7500,
+      "stock": 12,
+      "updatedAt": "2025-01-13T16:00:00Z"
+    },
+    {
+      "id": "6",
+      "sku": "P-006",
+      "title": "Наушники Sony WH-1000XM5",
+      "price": 28000,
+      "stock": 10,
+      "updatedAt": "2025-01-14T11:00:00Z"
+    },
+    {
+      "id": "7",
+      "sku": "P-007",
+      "title": "SSD Samsung 1TB",
+      "price": 9000,
+      "stock": 25,
+      "updatedAt": "2025-01-08T13:00:00Z"
+    },
+    {
+      "id": "8",
+      "sku": "P-008",
+      "title": "Планшет iPad Pro 12.9",
+      "price": 95000,
+      "stock": 7,
+      "updatedAt": "2025-01-15T09:00:00Z"
+    },
+    {
+      "id": "9",
+      "sku": "P-009",
+      "title": "Смартфон iPhone 15 Pro",
+      "price": 110000,
+      "stock": 10,
+      "updatedAt": "2025-01-16T08:00:00Z"
+    },
+    {
+      "id": "10",
+      "sku": "P-010",
+      "title": "Принтер HP LaserJet",
+      "price": 25000,
+      "stock": 6,
+      "updatedAt": "2025-01-14T15:00:00Z"
+    }
+  ],
+  "orders": [
+    {
+      "id": "1",
+      "number": "ORD-001",
+      "customerName": "Иван Иванов",
+      "status": "new",
+      "items": [
+        {
+          "productId": 1,
+          "productName": "Ноутбук Dell XPS 15",
+          "qty": 1,
+          "price": 120000
+        }
+      ],
+      "total": 120000,
+      "createdAt": "2025-01-15T08:00:00Z"
+    },
+    {
+      "id": "2",
+      "number": "ORD-002",
+      "customerName": "Пётр Петров",
+      "status": "processing",
+      "items": [
+        {
+          "productId": 2,
+          "productName": "Мышь Logitech MX Master 3",
+          "qty": 2,
+          "price": 5000
+        },
+        {
+          "productId": 3,
+          "productName": "Клавиатура Keychron K8",
+          "qty": 1,
+          "price": 8500
+        }
+      ],
+      "total": 18500,
+      "createdAt": "2025-01-14T14:30:00Z"
+    },
+    {
+      "id": "3",
+      "number": "ORD-003",
+      "customerName": "Анна Сидорова",
+      "status": "shipped",
+      "items": [
+        {
+          "productId": 4,
+          "productName": "Монитор LG UltraWide 34\"",
+          "qty": 1,
+          "price": 45000
+        },
+        {
+          "productId": 6,
+          "productName": "Наушники Sony WH-1000XM5",
+          "qty": 1,
+          "price": 28000
+        }
+      ],
+      "total": 73000,
+      "createdAt": "2025-01-14T10:15:00Z"
+    },
+    {
+      "id": "4",
+      "number": "ORD-004",
+      "customerName": "Михаил Кузнецов",
+      "status": "delivered",
+      "items": [
+        {
+          "productId": 5,
+          "productName": "Веб-камера Logitech C920",
+          "qty": 1,
+          "price": 7500
+        }
+      ],
+      "total": 7500,
+      "createdAt": "2025-01-12T14:20:00Z"
+    },
+    {
+      "id": "5",
+      "number": "ORD-005",
+      "customerName": "Елена Васильева",
+      "status": "new",
+      "items": [
+        {
+          "productId": 7,
+          "productName": "SSD Samsung 1TB",
+          "qty": 4,
+          "price": 9000
+        }
+      ],
+      "total": 36000,
+      "createdAt": "2025-01-16T11:00:00Z"
+    },
+    {
+      "id": "6",
+      "number": "ORD-006",
+      "customerName": "Дмитрий Козлов",
+      "status": "processing",
+      "items": [
+        {
+          "productId": 1,
+          "productName": "Ноутбук Dell XPS 15",
+          "qty": 2,
+          "price": 120000
+        }
+      ],
+      "total": 240000,
+      "createdAt": "2025-01-13T09:00:00Z"
+    },
+    {
+      "id": "7",
+      "number": "ORD-007",
+      "customerName": "Ольга Новикова",
+      "status": "cancelled",
+      "items": [
+        {
+          "productId": 6,
+          "productName": "Наушники Sony WH-1000XM5",
+          "qty": 2,
+          "price": 28000
+        }
+      ],
+      "total": 56000,
+      "createdAt": "2025-01-13T13:30:00Z"
+    },
+    {
+      "id": "8",
+      "number": "ORD-008",
+      "customerName": "Сергей Попов",
+      "status": "shipped",
+      "items": [
+        {
+          "productId": 4,
+          "productName": "Монитор LG UltraWide 34\"",
+          "qty": 2,
+          "price": 45000
+        }
+      ],
+      "total": 90000,
+      "createdAt": "2025-01-11T16:00:00Z"
+    },
+    {
+      "id": "9",
+      "number": "ORD-009",
+      "customerName": "Татьяна Волкова",
+      "status": "delivered",
+      "items": [
+        {
+          "productId": 2,
+          "productName": "Мышь Logitech MX Master 3",
+          "qty": 1,
+          "price": 5000
+        },
+        {
+          "productId": 5,
+          "productName": "Веб-камера Logitech C920",
+          "qty": 1,
+          "price": 7500
+        }
+      ],
+      "total": 12500,
+      "createdAt": "2025-01-10T15:45:00Z"
+    },
+    {
+      "id": "10",
+      "number": "ORD-010",
+      "customerName": "Александр Морозов",
+      "status": "delivered",
+      "items": [
+        {
+          "productId": 3,
+          "productName": "Клавиатура Keychron K8",
+          "qty": 3,
+          "price": 8500
+        }
+      ],
+      "total": 25500,
+      "createdAt": "2025-01-10T09:00:00Z"
+    },
+    {
+      "id": "11",
+      "number": "ORD-011",
+      "customerName": "Наталья Соколова",
+      "status": "processing",
+      "items": [
+        {
+          "productId": 1,
+          "productName": "Ноутбук Dell XPS 15",
+          "qty": 1,
+          "price": 120000
+        },
+        {
+          "productId": 4,
+          "productName": "Монитор LG UltraWide 34\"",
+          "qty": 1,
+          "price": 45000
+        },
+        {
+          "productId": 2,
+          "productName": "Мышь Logitech MX Master 3",
+          "qty": 1,
+          "price": 5000
+        }
+      ],
+      "total": 170000,
+      "createdAt": "2025-01-15T10:20:00Z"
+    },
+    {
+      "id": "12",
+      "number": "ORD-012",
+      "customerName": "Виктор Лебедев",
+      "status": "new",
+      "items": [
+        {
+          "productId": 8,
+          "productName": "Планшет iPad Pro 12.9",
+          "qty": 1,
+          "price": 95000
+        }
+      ],
+      "total": 95000,
+      "createdAt": "2025-01-16T14:00:00Z"
+    },
+    {
+      "id": "13",
+      "number": "ORD-013",
+      "customerName": "Мария Федорова",
+      "status": "shipped",
+      "items": [
+        {
+          "productId": 9,
+          "productName": "Смартфон iPhone 15 Pro",
+          "qty": 1,
+          "price": 110000
+        },
+        {
+          "productId": 6,
+          "productName": "Наушники Sony WH-1000XM5",
+          "qty": 1,
+          "price": 28000
+        }
+      ],
+      "total": 138000,
+      "createdAt": "2025-01-15T12:30:00Z"
+    },
+    {
+      "id": "14",
+      "number": "ORD-014",
+      "customerName": "Андрей Николаев",
+      "status": "processing",
+      "items": [
+        {
+          "productId": 10,
+          "productName": "Принтер HP LaserJet",
+          "qty": 2,
+          "price": 25000
+        }
+      ],
+      "total": 50000,
+      "createdAt": "2025-01-14T16:45:00Z"
+    },
+    {
+      "id": "15",
+      "number": "ORD-015",
+      "customerName": "Екатерина Павлова",
+      "status": "delivered",
+      "items": [
+        {
+          "productId": 3,
+          "productName": "Клавиатура Keychron K8",
+          "qty": 1,
+          "price": 8500
+        },
+        {
+          "productId": 2,
+          "productName": "Мышь Logitech MX Master 3",
+          "qty": 1,
+          "price": 5000
+        }
+      ],
+      "total": 13500,
+      "createdAt": "2025-01-09T11:00:00Z"
+    },
+    {
+      "id": "16",
+      "number": "ORD-016",
+      "customerName": "Алексей Григорьев",
+      "status": "new",
+      "items": [
+        {
+          "productId": 1,
+          "productName": "Ноутбук Dell XPS 15",
+          "qty": 1,
+          "price": 120000
+        },
+        {
+          "productId": 7,
+          "productName": "SSD Samsung 1TB",
+          "qty": 2,
+          "price": 9000
+        }
+      ],
+      "total": 138000,
+      "createdAt": "2025-01-16T09:30:00Z"
+    },
+    {
+      "id": "17",
+      "number": "ORD-017",
+      "customerName": "Светлана Романова",
+      "status": "cancelled",
+      "items": [
+        {
+          "productId": 8,
+          "productName": "Планшет iPad Pro 12.9",
+          "qty": 1,
+          "price": 95000
+        }
+      ],
+      "total": 95000,
+      "createdAt": "2025-01-12T10:00:00Z"
+    },
+    {
+      "id": "18",
+      "number": "ORD-018",
+      "customerName": "Денис Степанов",
+      "status": "shipped",
+      "items": [
+        {
+          "productId": 4,
+          "productName": "Монитор LG UltraWide 34\"",
+          "qty": 1,
+          "price": 45000
+        },
+        {
+          "productId": 5,
+          "productName": "Веб-камера Logitech C920",
+          "qty": 2,
+          "price": 7500
+        }
+      ],
+      "total": 60000,
+      "createdAt": "2025-01-11T13:15:00Z"
+    },
+    {
+      "id": "19",
+      "number": "ORD-019",
+      "customerName": "Юлия Белова",
+      "status": "processing",
+      "items": [
+        {
+          "productId": 9,
+          "productName": "Смартфон iPhone 15 Pro",
+          "qty": 2,
+          "price": 110000
+        }
+      ],
+      "total": 220000,
+      "createdAt": "2025-01-15T15:00:00Z"
+    },
+    {
+      "id": "20",
+      "number": "ORD-020",
+      "customerName": "Владимир Орлов",
+      "status": "delivered",
+      "items": [
+        {
+          "productId": 6,
+          "productName": "Наушники Sony WH-1000XM5",
+          "qty": 1,
+          "price": 28000
+        },
+        {
+          "productId": 3,
+          "productName": "Клавиатура Keychron K8",
+          "qty": 1,
+          "price": 8500
+        },
+        {
+          "productId": 2,
+          "productName": "Мышь Logitech MX Master 3",
+          "qty": 1,
+          "price": 5000
+        }
+      ],
+      "total": 41500,
+      "createdAt": "2025-01-08T14:30:00Z"
+    },
+    {
+      "id": "21",
+      "number": "ORD-021",
+      "customerName": "Ирина Киселева",
+      "status": "processing",
+      "items": [
+        {
+          "productId": 10,
+          "productName": "Принтер HP LaserJet",
+          "qty": 1,
+          "price": 25000
+        },
+        {
+          "productId": 7,
+          "productName": "SSD Samsung 1TB",
+          "qty": 1,
+          "price": 9000
+        }
+      ],
+      "total": 34000,
+      "createdAt": "2025-01-16T16:20:00Z"
+    },
+    {
+      "id": "22",
+      "number": "ORD-022",
+      "customerName": "Николай Макаров",
+      "status": "shipped",
+      "items": [
+        {
+          "productId": 1,
+          "productName": "Ноутбук Dell XPS 15",
+          "qty": 3,
+          "price": 120000
+        }
+      ],
+      "total": 360000,
+      "createdAt": "2025-01-14T08:45:00Z"
+    },
+    {
+      "id": "23",
+      "number": "ORD-023",
+      "customerName": "Оксана Зайцева",
+      "status": "delivered",
+      "items": [
+        {
+          "productId": 8,
+          "productName": "Планшет iPad Pro 12.9",
+          "qty": 1,
+          "price": 95000
+        },
+        {
+          "productId": 6,
+          "productName": "Наушники Sony WH-1000XM5",
+          "qty": 1,
+          "price": 28000
+        }
+      ],
+      "total": 123000,
+      "createdAt": "2025-01-09T17:00:00Z"
+    },
+    {
+      "id": "24",
+      "number": "ORD-024",
+      "customerName": "Артём Борисов",
+      "status": "processing",
+      "items": [
+        {
+          "productId": 4,
+          "productName": "Монитор LG UltraWide 34\"",
+          "qty": 3,
+          "price": 45000
+        },
+        {
+          "productId": 10,
+          "productName": "Принтер HP LaserJet",
+          "qty": 1,
+          "price": 25000
+        }
+      ],
+      "total": 160000,
+      "createdAt": "2025-01-15T11:30:00Z"
+    },
+    {
+      "id": "25",
+      "number": "ORD-025",
+      "customerName": "Валентина Ершова",
+      "status": "cancelled",
+      "items": [
+        {
+          "productId": 9,
+          "productName": "Смартфон iPhone 15 Pro",
+          "qty": 1,
+          "price": 110000
+        }
+      ],
+      "total": 110000,
+      "createdAt": "2025-01-11T10:00:00Z"
+    }
+  ]
+}

@@ -1,0 +1,163 @@
+<div class="orders-container">
+  <!-- Заголовок -->
+  <div class="header">
+    <h1>Заказы</h1>
+    <p-button
+      label="Выйти"
+      icon="pi pi-sign-out"
+      [outlined]="true"
+      severity="secondary"
+      (onClick)="onLogout()"
+    />
+  </div>
+
+  <!-- Панель фильтров -->
+  <div class="filters-panel">
+    <div class="filter-item">
+      <label for="search">Поиск</label>
+      <input
+        pInputText
+        id="search"
+        type="text"
+        [value]="searchQuery()"
+        (input)="onSearch($event)"
+        placeholder="Имя клиента или номер заказа"
+      />
+    </div>
+
+    <div class="filter-item">
+      <label for="status">Статус</label>
+      <p-select
+        id="status"
+        [options]="statusOptions"
+        [(ngModel)]="selectedStatus"
+        (onChange)="onStatusChange()"
+        optionLabel="label"
+        optionValue="value"
+      />
+    </div>
+
+    <div class="filter-item">
+      <label for="pageSize">На странице</label>
+      <p-select
+        id="pageSize"
+        [options]="pageSizeOptions"
+        [(ngModel)]="pageSize"
+        optionLabel="label"
+        optionValue="value"
+        [showClear]="false"
+      />
+    </div>
+
+    <div class="filter-item">
+      <p-button
+        label="Сбросить"
+        icon="pi pi-filter-slash"
+        [outlined]="true"
+        (onClick)="resetFilters()"
+      />
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  @if (ordersService.isLoading()) {
+    <div class="loading-container">
+      <p-progressSpinner />
+      <p>Загрузка заказов...</p>
+    </div>
+  }
+
+  <!-- Error State -->
+  @if (ordersService.error()) {
+    <div class="error-container">
+      <i class="pi pi-exclamation-triangle"></i>
+      <p>{{ ordersService.error() }}</p>
+      <p-button
+        label="Попробовать снова"
+        icon="pi pi-refresh"
+        (onClick)="loadOrders()"
+      />
+    </div>
+  }
+
+  <!-- Таблица заказов -->
+  @if (!ordersService.isLoading() && !ordersService.error()) {
+    <!-- Empty State -->
+    @if (filteredOrders().length === 0) {
+      <div class="empty-state">
+        <i class="pi pi-inbox"></i>
+        <h3>Заказы не найдены</h3>
+        <p>Попробуйте изменить фильтры</p>
+        <p-button label="Сбросить фильтры" (onClick)="resetFilters()" />
+      </div>
+    } @else {
+      <!-- PrimeNG Table -->
+      <p-table
+        [value]="filteredOrders()"
+        [lazy]="false"
+        [paginator]="true"
+        [rows]="pageSize"
+        (onPage)="onPageChange($event)"
+        [rowsPerPageOptions]="[5, 10, 20, 50]"
+        [showCurrentPageReport]="true"
+        currentPageReportTemplate="Показано {first}-{last} из {totalRecords}"
+        class="p-datatable-striped"
+      >
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Номер заказа</th>
+            <th>Клиент</th>
+            <th>Статус</th>
+            <th
+              (click)="onSort('total')"
+              style="cursor: pointer"
+              class="sortable-header"
+            >
+              Сумма
+              @if (sortField() === 'total') {
+                <i
+                  class="pi"
+                  [class.pi-sort-amount-up-alt]="sortOrder() === 'asc'"
+                  [class.pi-sort-amount-down]="sortOrder() === 'desc'"
+                ></i>
+              } @else {
+                <i class="pi pi-sort-alt"></i>
+              }
+            </th>
+            <th
+              (click)="onSort('createdAt')"
+              style="cursor: pointer"
+              class="sortable-header"
+            >
+              Дата создания
+              @if (sortField() === 'createdAt') {
+                <i
+                  class="pi"
+                  [class.pi-sort-amount-up-alt]="sortOrder() === 'asc'"
+                  [class.pi-sort-amount-down]="sortOrder() === 'desc'"
+                ></i>
+              } @else {
+                <i class="pi pi-sort-alt"></i>
+              }
+            </th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-order>
+          <tr (click)="onViewOrder(order.id)" class="clickable-row">
+            <td><strong>{{ order.number }}</strong></td>
+            <td>{{ order.customerName }}</td>
+            <td>
+              <p-tag
+                [value]="getStatusLabel(order.status)"
+                [severity]="getStatusSeverity(order.status)"
+              />
+            </td>
+            <td class="text-right">{{ order.total | number : '1.0-0' }} ₸</td>
+            <td>{{ order.createdAt | date : 'dd.MM.yyyy HH:mm' }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    }
+  }
+</div>

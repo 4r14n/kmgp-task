@@ -1,0 +1,80 @@
+<div class="flex align-items-center justify-content-center min-h-screen">
+  <p-card class="w-full max-w-30rem">
+    <ng-template pTemplate="header">
+      <div class="text-center py-3">
+        <h1 class="text-3xl font-semibold m-0 mt-4">Вход в систему</h1>
+        <p class="text-color-secondary mt-2 mb-0">Кабинет заказов</p>
+      </div>
+    </ng-template>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="flex flex-column gap-3 mx-4">
+      <div class="flex flex-column gap-2">
+        <label for="email" class="font-semibold">Email</label>
+        <input
+          pInputText
+          id="email"
+          formControlName="email"
+          type="email"
+          placeholder="example@mail.com"
+          class="w-full"
+          [class.ng-invalid]="
+            loginForm.controls.email.invalid && loginForm.controls.email.touched
+          "
+          [class.ng-dirty]="loginForm.controls.email.touched"
+        />
+        @if (loginForm.controls.email.invalid && loginForm.controls.email.touched) {
+          <small class="text-red-500">
+            @if (loginForm.controls.email.errors?.['required']) {
+              Email обязателен
+            }
+            @if (loginForm.controls.email.errors?.['email']) {
+              Некорректный формат email
+            }
+          </small>
+        }
+      </div>
+
+      <div class="flex flex-column gap-2">
+        <label for="password" class="font-semibold">Пароль</label>
+        <p-password
+          formControlName="password"
+          inputId="password"
+          [toggleMask]="true"
+          [feedback]="false"
+          placeholder="Введите пароль"
+          class="w-full"
+          inputStyleClass="w-full"
+          [class.ng-invalid]="
+            loginForm.controls.password.invalid && loginForm.controls.password.touched
+          "
+          [class.ng-dirty]="loginForm.controls.password.touched"
+        />
+        @if (loginForm.controls.password.invalid && loginForm.controls.password.touched) {
+          <small class="text-red-500">
+            @if (loginForm.controls.password.errors?.['required']) {
+              Пароль обязателен
+            }
+            @if (loginForm.controls.password.errors?.['minlength']) {
+              Минимум 6 символов
+            }
+          </small>
+        }
+      </div>
+
+      <p-button
+        type="submit"
+        label="Войти"
+        icon="pi pi-sign-in"
+        [disabled]="loginForm.invalid"
+        [loading]="loading()"
+        class="flex justify-content-end w-full mt-1"
+      />
+    </form>
+
+    <ng-template pTemplate="footer">
+      <div class="text-center text-sm text-color-secondary">
+        <p class="m-0">Фейковый вход с моковыми данными</p>
+      </div>
+    </ng-template>
+  </p-card>
+</div>

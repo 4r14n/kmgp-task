@@ -1,0 +1,128 @@
+.orders-container {
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+
+  h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin: 0;
+  }
+
+  ::ng-deep .p-button {
+    border-color: var(--p-red-500) !important;
+    color: var(--p-red-500) !important;
+
+    .p-button-icon {
+      color: var(--p-red-500) !important;
+    }
+
+    &:hover {
+      background-color: var(--p-surface-200) !important;
+    }
+  }
+}
+
+.filters-panel {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr 1fr auto;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: var(--surface-card);
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  .filter-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    label {
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: var(--text-color-secondary);
+    }
+
+    &:last-child {
+      align-self: end;
+    }
+  }
+}
+
+.loading-container,
+.error-container,
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  gap: 1rem;
+
+  i {
+    font-size: 3rem;
+    color: var(--text-color-secondary);
+  }
+
+  p,
+  h3 {
+    margin: 0;
+    color: var(--text-color-secondary);
+  }
+}
+
+.error-container i {
+  color: var(--red-500);
+}
+
+.sortable-header {
+  user-select: none;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: var(--surface-hover);
+  }
+
+  i {
+    margin-left: 0.5rem;
+    font-size: 0.875rem;
+  }
+}
+
+.text-right {
+  text-align: right;
+}
+
+.clickable-row {
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: var(--p-surface-200) !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .filters-panel {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .orders-container {
+    padding: 1rem;
+  }
+
+  .filters-panel {
+    grid-template-columns: 1fr;
+  }
+}

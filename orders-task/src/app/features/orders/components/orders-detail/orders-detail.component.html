@@ -1,0 +1,149 @@
+<div class="orders-detail">
+  <!-- Loading State -->
+  @if (loading()) {
+    <div class="loading-container">
+      <p-progressSpinner />
+    </div>
+  }
+
+  <!-- Error State -->
+  @if (error() && !loading()) {
+    <p-card>
+      <div class="error-state">
+        <i class="pi pi-exclamation-triangle" style="font-size: 3rem; color: var(--p-red-500)"></i>
+        <h3>{{ error() }}</h3>
+        <p-button label="Вернуться к списку" icon="pi pi-arrow-left" (onClick)="onBack()" />
+      </div>
+    </p-card>
+  }
+
+  <!-- Order Detail Content -->
+  @if (order() && !loading() && !error()) {
+    <div class="detail-container">
+      <!-- Header -->
+      <div class="detail-header">
+        <div class="header-left">
+          <p-button
+            icon="pi pi-arrow-left"
+            [text]="true"
+            [rounded]="true"
+            (onClick)="onBack()"
+            pTooltip="Вернуться к списку"
+            tooltipPosition="bottom"
+          />
+          <div class="header-title">
+            <h2>Заказ {{ order()!.number }}</h2>
+            <p-tag [value]="getStatusLabel(order()!.status)" [severity]="getStatusSeverity(order()!.status)" />
+          </div>
+        </div>
+        <div class="header-actions">
+          <p-button
+            label="Удалить"
+            icon="pi pi-trash"
+            severity="danger"
+            [outlined]="true"
+            (onClick)="onDelete()"
+            [loading]="saving()"
+          />
+          <p-button
+            label="Сохранить"
+            icon="pi pi-save"
+            (onClick)="onSave()"
+            [loading]="saving()"
+            [disabled]="!hasChanges"
+          />
+        </div>
+      </div>
+
+      <!-- Form -->
+      <form [formGroup]="orderForm" class="detail-form">
+        <!-- Order Metadata Card -->
+        <p-card header="Информация о заказе">
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="customerName">Имя клиента *</label>
+              <input
+                pInputText
+                id="customerName"
+                formControlName="customerName"
+                placeholder="Введите имя клиента"
+                [class.p-invalid]="
+                  orderForm.get('customerName')?.invalid &&
+                  (orderForm.get('customerName')?.dirty || orderForm.get('customerName')?.touched)
+                "
+              />
+              @if (
+                orderForm.get('customerName')?.invalid &&
+                (orderForm.get('customerName')?.dirty || orderForm.get('customerName')?.touched)
+              ) {
+                <small class="p-error">
+                  @if (orderForm.get('customerName')?.errors?.['required']) {
+                    Имя клиента обязательно
+                  }
+                  @if (orderForm.get('customerName')?.errors?.['emptyString']) {
+                    Имя не может состоять только из пробелов
+                  }
+                  @if (orderForm.get('customerName')?.errors?.['minLength']) {
+                    Минимум 2 символа
+                  }
+                </small>
+              }
+            </div>
+
+            <div class="form-field">
+              <label for="status">Статус *</label>
+              <p-select
+                id="status"
+                formControlName="status"
+                [options]="statusOptions"
+                optionLabel="label"
+                optionValue="value"
+                placeholder="Выберите статус"
+                class="w-full"
+              />
+            </div>
+
+            <div class="form-field">
+              <label>Дата создания</label>
+              <input pInputText [value]="order()!.createdAt | date: 'dd.MM.yyyy HH:mm'" [readonly]="true" />
+            </div>
+
+            <div class="form-field">
+              <label>Номер заказа</label>
+              <input pInputText [value]="order()!.number" [readonly]="true" />
+            </div>
+          </div>
+        </p-card>
+
+        <!-- Order Items Card -->
+        <p-card header="Товары в заказе">
+          <app-order-items-table
+            [itemsFormArray]="itemsFormArray"
+            (removeItem)="onRemoveItem($event)"
+            (addItem)="onAddItem()"
+          />
+
+          @if (orderForm.get('items')?.invalid && (orderForm.get('items')?.dirty || orderForm.get('items')?.touched)) {
+            <div class="mt-3">
+              <small class="p-error">
+                @if (orderForm.get('items')?.errors?.['minItems']) {
+                  В заказе должен быть хотя бы один товар
+                }
+              </small>
+            </div>
+          }
+        </p-card>
+
+        <!-- Total Amount Card -->
+        <p-card header="Итого">
+          <div class="total-amount">
+            <span class="total-label">Общая сумма заказа:</span>
+            <span class="total-value">{{ totalAmount | currency: 'KZT' : 'symbol' : '1.2-2' : 'ru-RU' }}</span>
+          </div>
+        </p-card>
+      </form>
+    </div>
+  }
+
+  <p-confirmDialog />
+</div>

@@ -1,0 +1,17 @@
+.order-items-table {
+  .p-error {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 0.875rem;
+  }
+
+  .p-invalid {
+    border-color: var(--p-red-500);
+  }
+
+  ::ng-deep {
+    .p-inputnumber-input {
+      width: 100%;
+    }
+  }
+}
